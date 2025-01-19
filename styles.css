@@ -66,6 +66,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.3s ease-in-out;
+  overflow-x: auto;
 }
 #post-content img {
   max-width: 100%; /* Restrict image width to fit the container */
@@ -75,7 +76,10 @@ body {
   border-radius: 8px; /* Optional: rounded corners for aesthetics */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
 }
-
+#post-content pre, #post-content code {
+  max-width: 100%; /* Restrict code blocks within bounds */
+  overflow-x: auto; /* Enable horizontal scrolling for large code blocks */
+}
 .back-button {
   margin-bottom: 20px;
   padding: 10px 20px;
