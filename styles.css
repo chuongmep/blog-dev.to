@@ -80,7 +80,7 @@ body {
   max-width: 100%; /* Restrict code blocks within bounds */
   overflow-x: auto; /* Enable horizontal scrolling for large code blocks */
 }
-.back-button {
+.back-button-content {
   margin-bottom: 20px;
   padding: 10px 20px;
   font-size: 16px;
@@ -205,6 +205,23 @@ code[class*="language-"], pre[class*="language-"] {
 .copy-button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+
+.back-button, .next-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007BFF; /* Blue background */
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin: 10px 5px; /* Space between the buttons */
+}
+
+.back-button:hover, .next-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
 
 
 @keyframes fadeIn {

@@ -1,6 +1,8 @@
 const apiURL = 'https://api.github.com/repos/chuongmep/blog-dev.to/contents/acticles?ref=main';
 
 let allPosts = [];
+let currentChunk = 0;
+const postsPerPage = 10;
 
 function loadPostList() {
   fetch(apiURL)
@@ -13,15 +15,25 @@ function loadPostList() {
         name: file.name,
         download_url: file.download_url,
       }));
-      renderPostList(allPosts);
+      renderPostList(allPosts, currentChunk);
+      renderNavigationButtons();
     })
     .catch(error => console.error('Error loading post list:', error));
 }
 
-function renderPostList(posts) {
+function renderPostList(posts, chunkIndex) {
   const postList = document.getElementById('post-list');
   postList.innerHTML = '';
-  posts.forEach(post => {
+
+  // Calculate the start and end index for the current chunk
+  const startIndex = chunkIndex * postsPerPage;
+  const endIndex = Math.min(startIndex + postsPerPage, posts.length);
+  
+  // Slice the posts to show only the current chunk
+  const postsToDisplay = posts.slice(startIndex, endIndex);
+  
+  // Render the posts
+  postsToDisplay.forEach(post => {
     const listItem = document.createElement('li');
     listItem.textContent = post.name.replace('.md', '').replace(/-/g, ' ');
     listItem.className = 'post-item';
@@ -29,6 +41,39 @@ function renderPostList(posts) {
     postList.appendChild(listItem);
   });
 }
+
+function renderNavigationButtons() {
+  const nextButton = document.getElementById('next-button');
+  const backButton = document.getElementById('back-button');
+  
+  // Show or hide the Back and Next buttons based on the current chunk
+  if (currentChunk > 0) {
+    backButton.style.display = 'inline-block';
+    backButton.onclick = () => loadPreviousChunk();
+  } else {
+    backButton.style.display = 'none';
+  }
+  
+  if ((currentChunk + 1) * postsPerPage < allPosts.length) {
+    nextButton.style.display = 'inline-block';
+    nextButton.onclick = () => loadNextChunk();
+  } else {
+    nextButton.style.display = 'none';
+  }
+}
+
+function loadNextChunk() {
+  currentChunk++;
+  renderPostList(allPosts, currentChunk);
+  renderNavigationButtons();
+}
+
+function loadPreviousChunk() {
+  currentChunk--;
+  renderPostList(allPosts, currentChunk);
+  renderNavigationButtons();
+}
+
 
 function loadPost(downloadUrl) {
   fetch(downloadUrl)
@@ -72,6 +117,8 @@ function loadPost(downloadUrl) {
       var date = file_name.split('-')[0] + '-' + file_name.split('-')[1] + '-' + file_name.split('-')[2];
       createDate(date);
       createTitle(title);
+      removeNextAndBackButton();
+      removeSearchBar();
 
     })
     .catch(error => console.error('Error loading post:', error));
@@ -83,17 +130,20 @@ function copyToClipboard(text) {
     .catch(err => console.error('Failed to copy code:', err));
 }
 
-
-
 function createBackButton() {
   const postContent = document.getElementById('post-content');
   const backButton = document.createElement('button');
   backButton.textContent = 'Back to Post List';
-  backButton.className = 'back-button';
+  backButton.className = 'back-button-content';
   backButton.onclick = () => {
     document.getElementById('post-list').style.display = 'block';
     postContent.style.display = 'none';
     postContent.innerHTML = '';
+    // add search bar back 
+    const searchBar = document.getElementById('search');
+    searchBar.style.display = 'block';
+    // add next and back button back
+    renderNavigationButtons();
   };
   postContent.prepend(backButton);
 }
@@ -112,13 +162,43 @@ function createDate(date) {
   postContent.prepend(datePost);
 }
 
+function removeSearchBar() {
+  const searchBar = document.getElementById('search');
+  searchBar.style.display = 'none';
+}
+function removeNextAndBackButton() {
+  const nextButton = document.getElementById('next-button');
+  const backButton = document.getElementById('back-button');
+  nextButton.style.display = 'none';
+  backButton.style.display = 'none';
+}
+
 function filterPosts() {
   const searchQuery = document.getElementById('search').value.toLowerCase();
+
+  // Filter posts based on the search query
   const filteredPosts = allPosts.filter(post =>
     post.name.replace('.md', '').toLowerCase().includes(searchQuery)
   );
-  renderPostList(filteredPosts);
+
+  // Reset chunk index and render filtered posts
+  currentChunk = 0;
+  renderPostList(filteredPosts, currentChunk);
+
+  // Update navigation buttons for filtered results
+  const nextButton = document.getElementById('next-button');
+  const backButton = document.getElementById('back-button');
+
+  // If there are filtered posts, adjust navigation buttons
+  if (filteredPosts.length > 0) {
+    renderNavigationButtons();
+  } else {
+    // Hide navigation buttons if no results match the search
+    nextButton.style.display = 'none';
+    backButton.style.display = 'none';
+  }
 }
+
 
 loadPostList();
 document.getElementById('search').addEventListener('input', filterPosts);
