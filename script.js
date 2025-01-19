@@ -34,6 +34,7 @@ function loadPost(downloadUrl) {
   fetch(downloadUrl)
     .then(response => response.text())
     .then(markdown => {
+
       const postContent = document.getElementById('post-content');
       postContent.innerHTML = marked.parse(markdown);
 
@@ -62,6 +63,16 @@ function loadPost(downloadUrl) {
       document.getElementById('post-list').style.display = 'none';
       postContent.style.display = 'block';
       createBackButton();
+      file_name = downloadUrl.split('/').pop();
+      // regex split date and title, and then replace %20 with space
+      var title = file_name.split('-')[3];
+      title = title.replace(/%20/g, ' ');
+      title = title.replace('.md', '');
+      // get date with format yyyy-mm-dd
+      var date = file_name.split('-')[0] + '-' + file_name.split('-')[1] + '-' + file_name.split('-')[2];
+      createDate(date);
+      createTitle(title);
+
     })
     .catch(error => console.error('Error loading post:', error));
 }
@@ -85,6 +96,20 @@ function createBackButton() {
     postContent.innerHTML = '';
   };
   postContent.prepend(backButton);
+}
+// create a title of post clicked 
+function createTitle(title) {
+  const postContent = document.getElementById('post-content');
+  const titlePost = document.createElement('h1');
+  titlePost.textContent = title;
+  postContent.prepend(titlePost);
+}
+
+function createDate(date) {
+  const postContent = document.getElementById('post-content');
+  const datePost = document.createElement('h3');
+  datePost.textContent = date;
+  postContent.prepend(datePost);
 }
 
 function filterPosts() {
