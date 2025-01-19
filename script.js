@@ -143,7 +143,8 @@ function displayLinkPreAndNext() {
   const postContent = document.getElementById('post-content');
   // create previous button
   const previousButton = document.createElement('button');
-  title = allPosts[currentPostIndex].name.replace('.md', '');
+  var previousIndex = currentPostIndex - 1;
+  title = allPosts[previousIndex].name.replace('.md', '');
   title = title.split('-')[3];
   previousButton.textContent = 'Previous Post: ' + title;
   previousButton.className = 'previous-button-content';
@@ -151,7 +152,8 @@ function displayLinkPreAndNext() {
   postContent.appendChild(previousButton);
   // create next button
   const nextButton = document.createElement('button');
-  nextTitle = allPosts[currentPostIndex].name.replace('.md', '')
+  var nextIndex = currentPostIndex + 1;
+  nextTitle = allPosts[nextIndex].name.replace('.md', '')
   nextTitle = nextTitle.split('-')[3];
   nextButton.textContent = 'Next Post: ' + nextTitle;
   nextButton.className = 'next-button-content';
