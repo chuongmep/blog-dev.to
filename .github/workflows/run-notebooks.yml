@@ -1,10 +1,9 @@
-name: Run Jupyter Notebooks
+name: Run Jupyter Notebooks Weekly
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  schedule:
+    - cron: '0 0 * * 0'  # Runs every Sunday at 00:00 UTC
+  workflow_dispatch: # Manual trigger
 
 jobs:
   run-notebooks:
