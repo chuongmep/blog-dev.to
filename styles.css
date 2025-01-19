@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #app {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  #search {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  #post-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #post-list li {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  #post-list li:hover {
+    background: #e4e4e4;
+  }
+  
+  #post-content {
+    display: none;
+    margin-top: 20px;
+  }
+  
