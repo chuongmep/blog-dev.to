@@ -18,6 +18,12 @@ function loadPostList() {
       }));
       // remove files not end with .md
       allPosts = allPosts.filter(post => post.name.endsWith('.md'));
+      console.log(allPosts);
+      // soft by latest post
+      allPosts.sort((a, b) => {
+        return new Date(b.name.split('-').slice(0, 3).join('-')) - new Date(a.name.split('-').slice(0, 3).join('-'));
+      });
+      
       renderPostList(allPosts, currentChunk);
       renderNavigationButtons();
     })
@@ -275,6 +281,9 @@ navLinks.forEach(link => {
         searchBar.style.display = 'block';
         // Show the next and back buttons
         renderNavigationButtons();
+        // set url to default
+        history.pushState({ post: null }, '', window.location.pathname);
+        
 
         break;
 
