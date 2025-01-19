@@ -283,10 +283,11 @@ navLinks.forEach(link => {
         document.getElementById('post-content').style.display = 'block';
         document.getElementById('post-content').innerHTML = `
           <h1>About</h1>
-          <p>This is a simple blog application that fetches articles from a GitHub repository and displays them on the page.</p>
-          <p>Click on an article to view its content. You can also search for articles by name using the search bar above.</p>
-          <p>Created by <a href="https://chuongmep.github.io/" target="_blank">Chuongmep</a></p>
+          <p>Chuong is a technology enthusiast who is focused on driving digital transformation for businesses. His main emphasis is on facilitating efficient data exchange and collaboration among engineers in the AEC industry (Architecture, Engineering, and Construction).</p>
+          <p>He is currently devoted to exploring deep programming aspects within Autodesk software, promoting technology, and enhancing data exchange combined with effective cloud solutions for enterprises. He is also a member of the Autodesk Expert Elite program.</p>
+          <p>Learn more about Chuong at <a href="https://chuongmep.com/" target="_blank">Chuongmep</a></p>
         `;
+
         // remove search bar
         var searchBar = document.getElementById('search');
         searchBar.style.display = 'none';
