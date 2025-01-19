@@ -31,24 +31,15 @@ function renderPostList(posts) {
 }
 
 function loadPost(downloadUrl) {
-  console.log("Loading post from URL:", downloadUrl);
-
   fetch(downloadUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to load post from ${downloadUrl}. Status: ${response.status}`);
-      }
-      return response.text();
-    })
+    .then(response => response.text())
     .then(markdown => {
       const postContent = document.getElementById('post-content');
       postContent.innerHTML = marked.parse(markdown);
 
-      // Ensure images fit the container
-      const images = postContent.querySelectorAll('img');
-      images.forEach(img => {
-        img.style.maxWidth = '100%';
-        img.style.height = 'auto';
+      // Highlight code blocks
+      postContent.querySelectorAll('pre code').forEach(block => {
+        hljs.highlightElement(block);
       });
 
       document.getElementById('post-list').style.display = 'none';
@@ -57,6 +48,7 @@ function loadPost(downloadUrl) {
     })
     .catch(error => console.error('Error loading post:', error));
 }
+
 
 
 function createBackButton() {
