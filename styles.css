@@ -25,6 +25,7 @@ body {
   outline: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
 #search:focus {
