@@ -1,41 +1,104 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: 'Roboto', Arial, sans-serif; /* Modern font */
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9; /* Light background for better readability */
+  color: #333; /* Neutral text color */
+}
+
+#app {
+  max-width: 800px; /* Restrict max width for better focus */
+  margin: 40px auto; /* Add spacing at the top */
+  padding: 20px;
+  background: #ffffff; /* White card-like background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 10px; /* Rounded corners */
+}
+
+#search {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Rounded input */
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#search:focus {
+  border-color: #007BFF; /* Highlighted border on focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+#post-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#post-list li {
+  padding: 15px;
+  margin: 10px 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#post-list li:hover {
+  background: #f0f8ff; /* Light blue hover */
+  transform: scale(1.02); /* Slight scaling effect */
+}
+#post-content {
+  word-wrap: break-word; /* Ensure long words or URLs wrap properly */
+  overflow-wrap: break-word;
+}
+#post-content {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease-in-out;
+}
+#post-content img {
+  max-width: 100%; /* Restrict image width to fit the container */
+  height: auto;    /* Maintain aspect ratio */
+  display: block;  /* Prevent inline behavior */
+  margin: 10px 0;  /* Add spacing around the image */
+  border-radius: 8px; /* Optional: rounded corners for aesthetics */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+}
+
+.back-button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007BFF; /* Blue background */
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.back-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  #app {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  #search {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-  
-  #post-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  #post-list li {
-    padding: 10px;
-    margin: 5px 0;
-    background: #f4f4f4;
-    border: 1px solid #ddd;
-    cursor: pointer;
-  }
-  
-  #post-list li:hover {
-    background: #e4e4e4;
-  }
-  
-  #post-content {
-    display: none;
-    margin-top: 20px;
-  }
-  
+}

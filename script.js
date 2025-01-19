@@ -43,12 +43,21 @@ function loadPost(downloadUrl) {
     .then(markdown => {
       const postContent = document.getElementById('post-content');
       postContent.innerHTML = marked.parse(markdown);
+
+      // Ensure images fit the container
+      const images = postContent.querySelectorAll('img');
+      images.forEach(img => {
+        img.style.maxWidth = '100%';
+        img.style.height = 'auto';
+      });
+
       document.getElementById('post-list').style.display = 'none';
       postContent.style.display = 'block';
       createBackButton();
     })
     .catch(error => console.error('Error loading post:', error));
 }
+
 
 function createBackButton() {
   const postContent = document.getElementById('post-content');
