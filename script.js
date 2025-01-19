@@ -37,9 +37,26 @@ function loadPost(downloadUrl) {
       const postContent = document.getElementById('post-content');
       postContent.innerHTML = marked.parse(markdown);
 
-      // Highlight code blocks
+      // Highlight code blocks and add "Copy Code" buttons
       postContent.querySelectorAll('pre code').forEach(block => {
         hljs.highlightElement(block);
+
+        // Create "Copy Code" button
+        const copyButton = document.createElement('button');
+        copyButton.textContent = 'Copy Code';
+        copyButton.className = 'copy-button';
+        copyButton.onclick = () => copyToClipboard(block.innerText);
+        // change the text of the button to "Copied!" when clicked
+        copyButton.addEventListener('click', () => {
+          copyButton.textContent = 'Copied!';
+          setTimeout(() => {
+            copyButton.textContent = 'Copy Code';
+          }, 2000);
+        });
+
+        // Insert the button before the code block
+        block.parentElement.style.position = 'relative'; // Ensure positioning for button
+        block.parentElement.prepend(copyButton);
       });
 
       document.getElementById('post-list').style.display = 'none';
@@ -47,6 +64,12 @@ function loadPost(downloadUrl) {
       createBackButton();
     })
     .catch(error => console.error('Error loading post:', error));
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text)
+    // .then(() => alert('Code copied to clipboard!'))
+    .catch(err => console.error('Failed to copy code:', err));
 }
 
 

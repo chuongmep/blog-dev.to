@@ -188,7 +188,23 @@ code[class*="language-"], pre[class*="language-"] {
 .token.entity {
   cursor: help;
 }
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #007BFF; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
 
+.copy-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
 
 
 @keyframes fadeIn {
