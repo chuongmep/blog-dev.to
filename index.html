@@ -9,16 +9,39 @@
 </head>
 <body>
   <div id="app">
-    <h1>ChuongMEP Blog</h1>
+    <!-- Img Me -->
+    <img  src="./me.jpg" alt="ChuongMEP" id="avatar" />
+    <!-- Blog Title -->
+    <h1 id="blog-header">ChuongMEP</h1>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul class="navigation">
+        <li><a href="#posts">Posts</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- Search and Posts -->
     <input type="text" id="search" placeholder="Search posts..." />
-    <ul id="post-list"></ul>
+    <ul id="post-list">
+      <!-- Add more posts here dynamically via JavaScript -->
+    </ul>
     <button id="back-button" class="back-button" style="display:none;">Back</button>
     <button id="next-button" class="next-button" style="display:none;">Next</button>
     <div id="post-content"></div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <button id="scroll-to-top" class="scroll-to-top" onclick="scrollToTop()">↑</button>
 
+  </div>
+
+  <!-- Copyright Section -->
+  <footer>
+    <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">
+      &copy; 2025 ChuongMEP. All rights reserved.
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

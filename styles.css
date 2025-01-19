@@ -6,6 +6,31 @@ body {
   color: #333; /* Neutral text color */
 }
 
+#avatar {
+  width: 100px; /* Set width */
+  height: 100px; /* Set height */
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensure the image fits within the circle */
+  display: block; /* Ensure proper alignment */
+  margin: 0 auto; /* Center it horizontally if needed */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Nice layered shadow */
+  border: 2px solid #ffffff; /* Optional: White border for cleaner look */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+}
+
+#avatar:hover {
+  transform: scale(1.1); /* Slight zoom-in effect */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+}
+
+/* Center the blog header */
+#blog-header {
+  text-align: center; /* Centers the text horizontally */
+  margin: 0 auto; /* Ensures it's centered in its container */
+  font-size: 2.5rem; /* Adjust font size as desired */
+  padding: 20px 0; /* Adds padding above and below the text */
+}
+
 #app {
   max-width: 800px; /* Restrict max width for better focus */
   margin: 40px auto; /* Add spacing at the top */
@@ -17,8 +42,10 @@ body {
 
 #search {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   margin-bottom: 20px;
+  /* add margin top */
+  margin-top: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px; /* Rounded input */
@@ -222,6 +249,91 @@ code[class*="language-"], pre[class*="language-"] {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
+/* Navigation Bar */
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  background-color: #333;
+  padding: 10px;
+}
+
+.navigation li {
+  display: inline;
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+/* Sections */
+section {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+.previous-button-content, .next-button-content {
+  padding: 12px 24px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007BFF; /* Green background */
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 10px 5px; /* Space between the buttons */
+  display: inline-block; /* Ensures proper alignment */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.previous-button-content:hover, .next-button-content:hover {
+  background-color: #042344; /* Darker green on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.previous-button-content:active, .next-button-content:active {
+  background-color: #1e7e34; /* Even darker green when clicked */
+  transform: scale(0.98); /* Slightly shrink on click */
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #007BFF; /* Blue background */
+  color: white; /* White arrow */
+  border: none;
+  border-radius: 50%; /* Circular button */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  font-size: 20px; /* Arrow size */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: none; /* Initially hidden */
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-to-top:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.scroll-to-top:active {
+  transform: scale(0.95); /* Slight shrink on click */
+}
 
 
 @keyframes fadeIn {
